@@ -1,4 +1,4 @@
-import { createContext ,useContext,useState} from "react";
+import { createContext ,useContext,useState ,useEffect} from "react";
 import { AuthContext } from "./AuthContext.jsx";
 import toast from "react-hot-toast";
 
@@ -34,7 +34,7 @@ export const ChatProvider = ({ children }) => {
         }
     }
 
-    const senMessage = async ()=>{
+    const sendMessage = async ()=>{
         try {
             const { data } = await axios.post(`/api/messages/send/${selectedUser._id}`,messageData);
             if (data.success){
