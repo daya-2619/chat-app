@@ -6,7 +6,7 @@ import { connectDB } from "./lib/db.js";
 import userRouter from "./routes/userRoutes.js";
 import messageRouter from "./routes/messageRoutes.js";
 import { Server } from "socket.io"; // <-- Correct import
-
+import path from "path";
 
 const app = express();
 const server = http.createServer(app); // <-- Only one 'server'
@@ -35,6 +35,8 @@ io.on("connection",()=>{
 app.use(cors());
 app.use(express.json({limit:"4mb"}));
 app.use("/api/messages",messageRouter)
+
+app.use('/favicon.ico', express.static(path.join(process.cwd(), 'favicon.ico')));
 
 // Route setup for chat application 
 
